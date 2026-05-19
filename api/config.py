@@ -103,8 +103,8 @@ class SVGConfig:
     artist_font_size: int = 16
 
     # Default colors (hex without #)
-    default_background: str = "181414"
-    default_border: str = "181414"
+    default_background: str = "0a0a0f"
+    default_border: str = "0a0a0f"
 
     # Default background type: "color", "blur_dark", or "blur_light"
     default_background_type: str = "color"

@@ -1,23 +1,140 @@
 {% extends "base.html.j2" %}
 
 {% block container_styles %}
-/* Dark theme - uses customizable background and border */
-background-color: var(--background-color);
-border: 1px solid var(--border-color);
+/* ══════════════════════════════════════════════════════════════
+   SPOTIFY DARK — Cyberpunk / Terminal Aesthetic
+   Color palette: #0a0a0f (void), #0d1117 (charcoal), #00d4ff (neon-blue),
+                  #58a6ff (soft-blue), #e6edf3 (white), #8b949e (muted)
+   ══════════════════════════════════════════════════════════════ */
+background: linear-gradient(135deg, #0a0a0f 0%, #0d1117 40%, #0f1318 100%);
+border: 1px solid rgba(0, 212, 255, 0.15);
+box-shadow: 0 0 20px rgba(0, 212, 255, 0.05),
+            inset 0 0 30px rgba(0, 0, 0, 0.3);
 {% endblock %}
 
 {% block theme_styles %}
-/* Dark theme specific overrides */
+/* ── Ambient glow overlay ── */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: calc(var(--border-radius) + 2px);
+    background: linear-gradient(
+        135deg,
+        rgba(0, 212, 255, 0.08) 0%,
+        transparent 40%,
+        transparent 60%,
+        rgba(0, 212, 255, 0.04) 100%
+    );
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ── Scanline overlay for terminal feel ── */
+.container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 212, 255, 0.008) 2px,
+        rgba(0, 212, 255, 0.008) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+    border-radius: var(--border-radius);
+}
+
+/* ── Album art enhancements ── */
+.cover {
+    border-radius: 6px;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(0, 212, 255, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.art:hover .cover {
+    transform: scale(1.03) !important;
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(0, 212, 255, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* ── Typography overrides ── */
 .song-text {
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    background: linear-gradient(
+        125deg,
+        #e6edf3 0%,
+        #c9d1d9 30%,
+        #58a6ff 70%,
+        #00d4ff 100%
+    ) !important;
+    background-size: 300% 100% !important;
+    -webkit-text-fill-color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    animation: text-shimmer 8s ease-in-out infinite !important;
+    filter: drop-shadow(0 0 4px rgba(0, 212, 255, 0.15)) !important;
 }
 
 .artist-text {
-    opacity: 0.9;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-size: 11px !important;
+    background: linear-gradient(
+        -125deg,
+        #8b949e 0%,
+        #6e7681 50%,
+        #58a6ff 100%
+    ) !important;
+    background-size: 200% 100% !important;
+    -webkit-text-fill-color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    animation: gradient 12s ease infinite !important;
+    filter: none !important;
+    opacity: 0.85;
 }
 
-.cover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+@keyframes text-shimmer {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ── Status text ── */
+.status {
+    font-size: 9px !important;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    background: linear-gradient(90deg, #00d4ff, #58a6ff) !important;
+    -webkit-text-fill-color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    opacity: 0.6 !important;
+    filter: none !important;
+}
+
+/* ── Equalizer bar overrides for neon aesthetic ── */
+.bar {
+    opacity: 0.9 !important;
+    filter: drop-shadow(0 0 2px rgba(0, 212, 255, 0.3));
 }
 
 {% endblock %}

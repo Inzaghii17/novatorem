@@ -1,10 +1,51 @@
-&nbsp;<div align="center">
-  [![Last.fm](https://novatorem.vercel.app/api/orchestrator?background_type=blur_dark&border_color=ffffff")](https://novatorem.vercel.app/redirect)
-</div>
+# Novatorem — Spotify Now Playing Widget
 
-&nbsp;<div align="center">
-  [Fork](https://github.com/novatorem/novatorem/blob/main/SetUp.md) this [unlicensed](https://choosealicense.com/licenses/unlicense/) repository to recreate!<br><br>
-  [![Linkedin](https://img.shields.io/badge/linked-in-369?style=flat-square&logo=linkedin&logoColor=white&color=blue)](https://www.linkedin.com/in/andrew-novac)
-  [![E-Mail](https://img.shields.io/badge/email-reveal-2a8?style=flat-square&logo=gmail&logoColor=white)](https://mail.novac.dev/)
-  [![Visits](https://komarev.com/ghpvc/?username=novatorem&logo=GitHub&label=github%20visits&color=336699&logoColor=white&style=flat-square)](https://github.com/novatorem)
-</div>
+A customized, premium Spotify "Now Playing" SVG widget for GitHub profiles, deployed on Vercel.
+
+## Features
+
+- **Real-time Spotify data** — Currently playing track with artist, album art
+- **BPM-synced equalizer bars** — Animated bars sync to the track's tempo
+- **Color extraction** — Colors from album art drive gradients and glows
+- **Dark cyberpunk theme** — Neon blue accents, terminal aesthetic
+- **Compact & standard modes** — `?compact=true` for smaller widget
+- **Marquee text** — Long track/artist names scroll smoothly
+- **Blur backgrounds** — `?background_type=blur_dark` for album art blur
+- **Fallback state** — Shows recent track when nothing is playing
+
+## Quick Start
+
+```bash
+# Clone and setup
+git clone https://github.com/Inzaghii17/novatorem.git
+cd novatorem
+cp .env.example .env
+
+# Fill in your Spotify credentials in .env
+# Then run locally:
+python start.py
+```
+
+## Deployment
+
+See [DEPLOY.md](DEPLOY.md) for complete deployment instructions.
+
+## Usage in README
+
+```markdown
+![Spotify](https://novatorem-inzaghii17.vercel.app/api)
+```
+
+### Parameters
+
+| Parameter | Values | Default | Description |
+|-----------|--------|---------|-------------|
+| `background_color` | hex (no #) | `181414` | Background color |
+| `border_color` | hex (no #) | `181414` | Border color |
+| `background_type` | `color`, `blur_dark`, `blur_light` | `color` | Background mode |
+| `show_status` | `true`, `false` | `false` | Show "Vibing to:" text |
+| `compact` | `true`, `false` | `false` | Compact layout |
+
+## License
+
+MIT
